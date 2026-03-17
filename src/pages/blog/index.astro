@@ -1,0 +1,120 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { siteConfig } from '@/config/site.config';
+
+// Sample blog posts — replace or add real posts over time
+const posts = [
+  {
+    slug: 'welcome-to-bmgr',
+    title: 'Welcome to BMGR',
+    date: '2026-03-15',
+    excerpt: 'We are excited to launch the official website of the Bhutanese Musical Group of Rochester. Learn about who we are, what we do, and how you can get involved.',
+    author: 'BMGR Team',
+  },
+  {
+    slug: 'summer-concert-2026',
+    title: 'Planning Our Grand Summer Concert 2026',
+    date: '2026-03-10',
+    excerpt: 'BMGR is planning a large-scale community musical event for June 2026 featuring Nepali folk songs, cultural dances, drama performances, and a volunteer appreciation ceremony.',
+    author: 'Birkha Gurung',
+  },
+  {
+    slug: 'harmonium-classes',
+    title: 'Join Our Weekly Harmonium Classes',
+    date: '2026-02-20',
+    excerpt: 'Our weekly harmonium classes at the community center are open to all skill levels. Whether you are a beginner or experienced, come learn and grow with us.',
+    author: 'BMGR Team',
+  },
+];
+
+function formatDate(d: string) {
+  return new Date(d).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+}
+---
+
+<BaseLayout title="Blog — BMGR" description="News, stories, and updates from the Bhutanese Musical Group of Rochester.">
+  <section class="bg-parchment-warm py-16 md:py-24">
+    <div class="max-w-4xl mx-auto px-6">
+      <div class="flex items-center gap-3 mb-4" style="animation: fade-up 0.6s 0.1s both;">
+        <div class="h-px w-10 bg-forest"></div>
+        <span class="text-[11px] font-bold tracking-[0.2em] uppercase text-forest">Blog</span>
+      </div>
+      <h1 class="font-display text-4xl md:text-5xl font-bold mb-4" style="animation: fade-up 0.7s 0.2s both;">
+        News & Stories
+      </h1>
+      <p class="text-lg text-ink-soft max-w-lg" style="animation: fade-up 0.7s 0.3s both;">
+        Updates from our community, event recaps, and stories behind the music.
+      </p>
+    </div>
+  </section>
+
+  <div class="dhaka-border" aria-hidden="true"></div>
+
+  <!-- Newsletter signup -->
+  <section class="py-10 bg-parchment">
+    <div class="max-w-2xl mx-auto px-6 reveal">
+      <div class="bg-parchment-warm border border-ink-faint/10 rounded-sm p-6 flex flex-col sm:flex-row items-start sm:items-center gap-4">
+        <div class="flex-1">
+          <h3 class="font-display text-base font-semibold mb-1">Stay Updated</h3>
+          <p class="text-xs text-ink-muted">Get event reminders and BMGR news delivered to your inbox.</p>
+        </div>
+        <form id="newsletter-form" class="flex gap-2 w-full sm:w-auto">
+          <input
+            type="email"
+            name="email"
+            required
+            placeholder="your@email.com"
+            class="flex-1 sm:w-48 px-3 py-2 bg-parchment border border-ink-faint/15 rounded-sm text-sm text-ink placeholder:text-ink-faint focus:border-indigo focus:ring-1 focus:ring-indigo transition"
+          />
+          <button type="submit" class="px-4 py-2 bg-forest text-white text-xs font-bold uppercase tracking-wider rounded-sm hover:bg-forest/90 transition-colors cursor-pointer shrink-0">
+            Subscribe
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Posts list -->
+  <section class="py-12 md:py-20 bg-parchment">
+    <div class="max-w-3xl mx-auto px-6 space-y-6">
+      {posts.map((post, i) => (
+        <article class={`reveal reveal-d${Math.min(i + 1, 3)}`}>
+          <a href={`/blog/${post.slug}/`} class="block group p-6 bg-parchment-warm border border-ink-faint/10 rounded-sm hover:shadow-md hover:shadow-ink/5 transition-all">
+            <div class="flex items-center gap-3 text-xs text-ink-muted mb-2">
+              <time datetime={post.date}>{formatDate(post.date)}</time>
+              <span class="w-1 h-1 rounded-full bg-ink-faint"></span>
+              <span>{post.author}</span>
+            </div>
+            <h2 class="font-display text-xl font-semibold group-hover:text-vermillion transition-colors mb-2">
+              {post.title}
+            </h2>
+            <p class="text-sm text-ink-muted leading-relaxed">{post.excerpt}</p>
+            <span class="inline-block mt-3 text-xs text-vermillion font-semibold uppercase tracking-wider group-hover:underline">
+              Read more &rarr;
+            </span>
+          </a>
+        </article>
+      ))}
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  function initNewsletter() {
+    const form = document.getElementById('newsletter-form') as HTMLFormElement | null;
+    form?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const btn = form.querySelector('button') as HTMLButtonElement;
+      const input = form.querySelector('input') as HTMLInputElement;
+      if (btn) {
+        const orig = btn.textContent;
+        btn.textContent = 'Subscribed!';
+        btn.disabled = true;
+        input.value = '';
+        setTimeout(() => { btn.textContent = orig; btn.disabled = false; }, 3000);
+      }
+    });
+  }
+  initNewsletter();
+  document.addEventListener('astro:after-swap', initNewsletter);
+</script>

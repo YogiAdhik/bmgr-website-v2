@@ -1,0 +1,296 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { Icon } from 'astro-icon/components';
+import { siteConfig } from '@/config/site.config';
+import { getInitials } from '@/utils/getInitials';
+
+const featured = siteConfig.members.filter((m) => m.photo).slice(0, 3);
+---
+
+<BaseLayout>
+  <!-- ===================== HERO ===================== -->
+  <section class="relative overflow-hidden">
+    <!-- Angled parchment bg -->
+    <div class="absolute inset-0 bg-parchment-warm"></div>
+    <!-- Subtle sarangi strings texture on right -->
+    <div class="absolute right-0 top-0 bottom-0 w-1/3 sarangi-strings hidden lg:block"></div>
+
+    <div class="relative max-w-6xl mx-auto px-6 py-20 md:py-28 lg:py-36">
+      <div class="grid lg:grid-cols-12 gap-10 items-center">
+        <!-- Left: Text -->
+        <div class="lg:col-span-7">
+          <!-- Small label -->
+          <div class="flex items-center gap-3 mb-6" style="animation: fade-up 0.6s 0.1s both;">
+            <div class="h-px w-10 bg-vermillion"></div>
+            <span class="text-[11px] font-bold tracking-[0.2em] uppercase text-vermillion">Est. 2019 &middot; Rochester, NY</span>
+          </div>
+
+          <!-- Main heading -->
+          <h1 class="font-display text-4xl sm:text-5xl md:text-6xl font-bold leading-[1.08] mb-5" style="animation: fade-up 0.7s 0.2s both;">
+            Bhutanese Musical<br />
+            Group of <span class="text-vermillion">Rochester</span>
+          </h1>
+
+          <!-- Devanagari -->
+          <p
+            class="text-xl md:text-2xl text-ink-muted mb-6"
+            style="font-family: 'Tiro Devanagari Hindi', serif; animation: fade-up 0.7s 0.35s both;"
+          >
+            भूटानी सङ्गीत समूह रोचेस्टर
+          </p>
+
+          <!-- Tagline -->
+          <p class="text-lg text-ink-soft max-w-lg mb-8 leading-relaxed" style="animation: fade-up 0.7s 0.45s both;">
+            Preserving and promoting <strong class="text-ink">Bhutanese Nepali</strong> music, arts, and culture — connecting
+            generations through the power of shared melodies.
+          </p>
+
+          <!-- CTAs -->
+          <div class="flex flex-wrap gap-3" style="animation: fade-up 0.7s 0.55s both;">
+            <a href="/about/" class="inline-flex items-center gap-2 px-6 py-3 bg-vermillion text-white text-sm font-semibold tracking-wide uppercase rounded-sm hover:bg-vermillion-dark transition-colors">
+              Our Story
+              <Icon name="lucide:arrow-right" class="w-4 h-4" />
+            </a>
+            <a href="/contact/" class="inline-flex items-center gap-2 px-6 py-3 border-2 border-ink/15 text-ink text-sm font-semibold tracking-wide uppercase rounded-sm hover:border-ink/40 transition-colors">
+              Get Involved
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: Stacked photo collage -->
+        <div class="lg:col-span-5 relative" style="animation: fade-up 0.8s 0.4s both;">
+          <div class="relative">
+            <!-- Main group photo -->
+            <div class="rounded-sm overflow-hidden shadow-2xl shadow-ink/10 border-4 border-parchment">
+              <img
+                src="/images/bmgr-group.jpg"
+                alt="BMGR Group"
+                class="w-full aspect-[4/3] object-cover"
+                loading="eager"
+              />
+            </div>
+            <!-- Floating accent card -->
+            <div class="absolute -bottom-6 -left-6 bg-turmeric text-ink px-5 py-3 rounded-sm shadow-lg">
+              <span class="font-display text-2xl font-bold">{new Date().getFullYear() - siteConfig.founded}+</span>
+              <span class="block text-[10px] font-bold tracking-[0.15em] uppercase">Years of BMGR</span>
+            </div>
+            <!-- Small prayer flag strip across photo -->
+            <div class="absolute top-4 -right-3 flex flex-col gap-1.5" aria-hidden="true">
+              <span class="w-3 h-6 bg-flag-blue/70 rounded-[1px]"></span>
+              <span class="w-3 h-6 bg-parchment/70 rounded-[1px]"></span>
+              <span class="w-3 h-6 bg-flag-red/70 rounded-[1px]"></span>
+              <span class="w-3 h-6 bg-flag-green/70 rounded-[1px]"></span>
+              <span class="w-3 h-6 bg-flag-yellow/70 rounded-[1px]"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Dhaka border -->
+  <div class="dhaka-border" aria-hidden="true"></div>
+
+  <!-- ===================== MISSION / VISION ===================== -->
+  <section class="py-20 md:py-28 bg-parchment">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="grid md:grid-cols-2 gap-12 md:gap-16">
+        <div class="reveal">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="w-8 h-8 rounded-full bg-vermillion/10 flex items-center justify-center">
+              <Icon name="lucide:compass" class="w-4 h-4 text-vermillion" />
+            </span>
+            <h2 class="font-display text-sm tracking-[0.2em] uppercase text-vermillion font-semibold">Mission</h2>
+          </div>
+          <p class="text-ink-soft leading-relaxed">{siteConfig.mission}</p>
+        </div>
+        <div class="reveal reveal-d1">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="w-8 h-8 rounded-full bg-indigo/10 flex items-center justify-center">
+              <Icon name="lucide:eye" class="w-4 h-4 text-indigo" />
+            </span>
+            <h2 class="font-display text-sm tracking-[0.2em] uppercase text-indigo font-semibold">Vision</h2>
+          </div>
+          <p class="text-ink-soft leading-relaxed">{siteConfig.vision}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== PROGRAMS ===================== -->
+  <section class="py-20 md:py-28 bg-parchment-warm">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="mb-12 reveal">
+        <div class="flex items-center gap-3 mb-3">
+          <div class="h-px w-10 bg-forest"></div>
+          <span class="text-[11px] font-bold tracking-[0.2em] uppercase text-forest">What We Do</span>
+        </div>
+        <h2 class="font-display text-3xl md:text-4xl font-bold">Our Programs</h2>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {siteConfig.programs.map((p, i) => {
+          const colors = ['vermillion', 'indigo', 'forest', 'turmeric', 'vermillion', 'indigo'];
+          const c = colors[i % colors.length];
+          return (
+            <div class={`reveal reveal-d${Math.min(i + 1, 4)} group bg-parchment border border-ink-faint/10 rounded-sm p-6 hover:shadow-lg hover:shadow-ink/5 hover:-translate-y-1 transition-all duration-300`}>
+              <div class={`w-10 h-10 rounded-full bg-${c}/10 flex items-center justify-center mb-4`}>
+                <Icon name={p.icon} class={`w-5 h-5 text-${c}`} />
+              </div>
+              <h3 class="font-display text-lg font-semibold mb-2">{p.title}</h3>
+              <p class="text-sm text-ink-muted leading-relaxed">{p.description}</p>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== MEMBERS PREVIEW ===================== -->
+  <section class="py-20 md:py-28 bg-parchment relative overflow-hidden">
+    <!-- Decorative vertical strings on left -->
+    <div class="absolute left-8 top-0 bottom-0 w-px bg-ink/5 hidden lg:block"></div>
+    <div class="absolute left-12 top-0 bottom-0 w-px bg-ink/3 hidden lg:block"></div>
+
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12">
+        <div class="reveal">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="h-px w-10 bg-indigo"></div>
+            <span class="text-[11px] font-bold tracking-[0.2em] uppercase text-indigo">The People</span>
+          </div>
+          <h2 class="font-display text-3xl md:text-4xl font-bold">Our Musicians</h2>
+        </div>
+        <a href="/members/" class="reveal text-sm font-semibold text-vermillion hover:text-vermillion-dark transition-colors uppercase tracking-wide">
+          Meet everyone &rarr;
+        </a>
+      </div>
+
+      <div class="grid sm:grid-cols-3 gap-6">
+        {featured.map((m, i) => (
+          <div class={`reveal reveal-d${i + 1} group`}>
+            <div class="relative overflow-hidden rounded-sm mb-4">
+              <img
+                src={m.photo!}
+                alt={m.name}
+                class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-500"
+                loading="lazy"
+              />
+              <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink/70 to-transparent pt-16 pb-4 px-4">
+                <h3 class="font-display text-lg font-semibold text-parchment">{m.name}</h3>
+                <p class="text-xs text-parchment/70 uppercase tracking-wider">{m.role}</p>
+              </div>
+              {m.founding && (
+                <span class="absolute top-3 right-3 bg-turmeric text-ink text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-sm">
+                  Founder
+                </span>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <div class="dhaka-border" aria-hidden="true"></div>
+
+  <!-- ===================== EVENTS PREVIEW ===================== -->
+  <section class="py-20 md:py-28 bg-parchment-warm">
+    <div class="max-w-4xl mx-auto px-6">
+      <div class="mb-12 reveal">
+        <div class="flex items-center gap-3 mb-3">
+          <div class="h-px w-10 bg-turmeric"></div>
+          <span class="text-[11px] font-bold tracking-[0.2em] uppercase text-saffron">Coming Up</span>
+        </div>
+        <h2 class="font-display text-3xl md:text-4xl font-bold">Upcoming Events</h2>
+      </div>
+
+      <div class="space-y-4">
+        {siteConfig.events.map((ev, i) => (
+          <div class={`reveal reveal-d${i + 1} flex gap-4 p-5 bg-parchment border border-ink-faint/10 rounded-sm hover:shadow-md hover:shadow-ink/5 transition-all`}>
+            <div class="w-1.5 rounded-full bg-gradient-to-b from-vermillion to-turmeric shrink-0"></div>
+            <div class="flex-1">
+              <div class="flex items-start justify-between gap-3">
+                <h3 class="font-display text-base font-semibold">{ev.title}</h3>
+                <span class:list={[
+                  'text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-sm shrink-0',
+                  ev.status === 'recurring' ? 'bg-forest/10 text-forest' : 'bg-vermillion/10 text-vermillion',
+                ]}>
+                  {ev.status}
+                </span>
+              </div>
+              <p class="text-sm text-saffron font-medium mt-1">{ev.date}</p>
+              <p class="text-sm text-ink-muted mt-1">{ev.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div class="mt-8 text-center reveal">
+        <a href="/events/" class="text-sm font-semibold text-vermillion hover:text-vermillion-dark uppercase tracking-wide">
+          All events & repertoire &rarr;
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== NEWSLETTER ===================== -->
+  <section class="py-14 bg-parchment">
+    <div class="max-w-xl mx-auto px-6 text-center reveal">
+      <h2 class="font-display text-2xl font-bold mb-2">Stay in the Loop</h2>
+      <p class="text-sm text-ink-muted mb-5">Get event reminders, news, and updates from BMGR.</p>
+      <form id="home-newsletter" class="flex flex-col sm:flex-row gap-2 max-w-sm mx-auto">
+        <input type="email" required placeholder="your@email.com"
+          class="flex-1 px-3 py-2.5 bg-parchment-warm border border-ink-faint/15 rounded-sm text-sm focus:border-indigo focus:ring-1 focus:ring-indigo transition" />
+        <button type="submit" class="px-5 py-2.5 bg-forest text-white text-xs font-bold uppercase tracking-wider rounded-sm hover:bg-forest/90 transition cursor-pointer shrink-0">
+          Subscribe
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <div class="dhaka-border" aria-hidden="true"></div>
+
+  <!-- ===================== CTA ===================== -->
+  <section class="relative py-20 md:py-28 bg-ink text-parchment overflow-hidden">
+    <!-- Faded prayer flag colors as vertical bars -->
+    <div class="absolute inset-0 flex opacity-[0.03]" aria-hidden="true">
+      <div class="flex-1 bg-flag-blue"></div>
+      <div class="flex-1 bg-parchment"></div>
+      <div class="flex-1 bg-flag-red"></div>
+      <div class="flex-1 bg-flag-green"></div>
+      <div class="flex-1 bg-flag-yellow"></div>
+    </div>
+
+    <div class="relative max-w-3xl mx-auto px-6 text-center">
+      <h2 class="font-display text-3xl md:text-4xl font-bold mb-4 reveal">
+        Be Part of the Music
+      </h2>
+      <p class="text-lg text-ink-faint mb-8 reveal reveal-d1">
+        Whether you sing, play, or simply carry Bhutanese Nepali music in your heart — we'd love to meet you.
+      </p>
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-3 reveal reveal-d2">
+        <a href="/contact/" class="px-7 py-3 bg-turmeric text-ink text-sm font-bold tracking-wide uppercase rounded-sm hover:bg-turmeric-light transition-colors">
+          Get Involved
+        </a>
+        <a href="/members/" class="px-7 py-3 border-2 border-parchment/20 text-parchment text-sm font-bold tracking-wide uppercase rounded-sm hover:border-parchment/50 transition-colors">
+          Meet the Team
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  function initHomeNl() {
+    const form = document.getElementById('home-newsletter') as HTMLFormElement | null;
+    form?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const btn = form.querySelector('button') as HTMLButtonElement;
+      const input = form.querySelector('input') as HTMLInputElement;
+      if (btn) { const o = btn.textContent; btn.textContent = 'Subscribed!'; btn.disabled = true; input.value = ''; setTimeout(() => { btn.textContent = o; btn.disabled = false; }, 3000); }
+    });
+  }
+  initHomeNl();
+  document.addEventListener('astro:after-swap', initHomeNl);
+</script>

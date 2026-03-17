@@ -1,0 +1,84 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { Icon } from 'astro-icon/components';
+import { siteConfig } from '@/config/site.config';
+---
+
+<BaseLayout title="Events — BMGR" description="Upcoming events, song repertoire, and equipment of BMGR.">
+  <section class="bg-parchment-warm py-16 md:py-24">
+    <div class="max-w-4xl mx-auto px-6">
+      <div class="flex items-center gap-3 mb-4" style="animation: fade-up 0.6s 0.1s both;">
+        <div class="h-px w-10 bg-turmeric"></div>
+        <span class="text-[11px] font-bold tracking-[0.2em] uppercase text-saffron">Events & Music</span>
+      </div>
+      <h1 class="font-display text-4xl md:text-5xl font-bold" style="animation: fade-up 0.7s 0.2s both;">
+        What's Happening
+      </h1>
+    </div>
+  </section>
+
+  <div class="dhaka-border" aria-hidden="true"></div>
+
+  <!-- Events -->
+  <section class="py-20 md:py-28 bg-parchment">
+    <div class="max-w-4xl mx-auto px-6">
+      <div class="mb-10 reveal">
+        <h2 class="font-display text-2xl font-bold">Upcoming & Recurring</h2>
+      </div>
+      <div class="space-y-4">
+        {siteConfig.events.map((ev, i) => (
+          <div class={`reveal reveal-d${i + 1} flex gap-4 p-5 bg-parchment-warm border border-ink-faint/10 rounded-sm`}>
+            <div class="w-1.5 rounded-full bg-gradient-to-b from-vermillion to-turmeric shrink-0"></div>
+            <div class="flex-1">
+              <h3 class="font-display text-base font-semibold">{ev.title}</h3>
+              <p class="text-sm text-saffron font-medium mt-1">{ev.date}{ev.time ? ` · ${ev.time}` : ''}</p>
+              <p class="text-sm text-ink-muted mt-1">{ev.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Songs -->
+  <section class="py-20 md:py-28 bg-parchment-warm">
+    <div class="max-w-4xl mx-auto px-6">
+      <div class="mb-10 reveal">
+        <span class="text-[11px] font-bold tracking-[0.2em] uppercase text-indigo">Repertoire</span>
+        <h2 class="font-display text-2xl font-bold mt-2">Songs We Perform</h2>
+      </div>
+
+      <div class="grid sm:grid-cols-2 gap-4">
+        {siteConfig.songs.map((song, i) => (
+          <div class={`reveal reveal-d${i + 1} p-5 bg-parchment border border-ink-faint/10 rounded-sm`}>
+            <div class="flex items-center gap-2 mb-2">
+              <span class="text-turmeric text-lg">&#9835;</span>
+              <h3 class="font-display text-base font-semibold italic">{song.title}</h3>
+            </div>
+            <p class="text-sm text-ink-muted">{song.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Equipment -->
+  <section class="py-20 md:py-28 bg-parchment">
+    <div class="max-w-4xl mx-auto px-6">
+      <div class="mb-10 reveal">
+        <span class="text-[11px] font-bold tracking-[0.2em] uppercase text-forest">Gear</span>
+        <h2 class="font-display text-2xl font-bold mt-2">Our Equipment</h2>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+        {siteConfig.equipment.map((item, i) => (
+          <div class={`reveal reveal-d${Math.min(i + 1, 4)} text-center p-4 bg-parchment-warm border border-ink-faint/10 rounded-sm`}>
+            <Icon name={item.icon} class="w-6 h-6 text-saffron mx-auto mb-2" />
+            <p class="text-sm font-semibold">{item.name}</p>
+            <p class="text-xs text-ink-muted">{item.count}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

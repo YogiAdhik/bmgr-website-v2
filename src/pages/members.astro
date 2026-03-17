@@ -1,0 +1,186 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { siteConfig } from '@/config/site.config';
+import { getInitials } from '@/utils/getInitials';
+---
+
+<BaseLayout title="Members — BMGR" description="Meet the musicians, singers, and cultural advocates behind BMGR.">
+  <!-- Page hero -->
+  <section class="bg-parchment-warm py-16 md:py-24">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="flex items-center gap-3 mb-4" style="animation: fade-up 0.6s 0.1s both;">
+        <div class="h-px w-10 bg-indigo"></div>
+        <span class="text-[11px] font-bold tracking-[0.2em] uppercase text-indigo">The People</span>
+      </div>
+      <h1 class="font-display text-4xl md:text-5xl font-bold mb-4" style="animation: fade-up 0.7s 0.2s both;">
+        Our Members
+      </h1>
+      <p class="text-lg text-ink-soft max-w-xl" style="animation: fade-up 0.7s 0.3s both;">
+        Passionate musicians and cultural advocates preserving Nepali heritage through music.
+      </p>
+    </div>
+  </section>
+
+  <div class="dhaka-border" aria-hidden="true"></div>
+
+  <!-- Group photo -->
+  <section class="py-12 bg-parchment">
+    <div class="max-w-4xl mx-auto px-6 reveal">
+      <div class="rounded-sm overflow-hidden shadow-xl shadow-ink/8">
+        <img src="/images/bmgr-group.jpg" alt="BMGR Group Photo" class="w-full" loading="lazy" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Members grid -->
+  <section class="py-16 md:py-24 bg-parchment">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="grid sm:grid-cols-2 gap-6">
+        {siteConfig.members.map((member, i) => {
+          const gradients = [
+            'from-vermillion/80 to-saffron/80',
+            'from-forest/80 to-indigo/80',
+            'from-indigo/80 to-vermillion/80',
+            'from-saffron/80 to-forest/80',
+            'from-vermillion-dark/80 to-turmeric/80',
+          ];
+          const grad = gradients[(member.variant || i) % gradients.length];
+
+          return (
+            <div class={`reveal reveal-d${(i % 4) + 1}`}>
+              <button
+                class="member-trigger w-full text-left group bg-parchment-warm border border-ink-faint/10 rounded-sm overflow-hidden hover:shadow-lg hover:shadow-ink/5 transition-all duration-300 cursor-pointer"
+                data-idx={i}
+              >
+                <div class="flex items-stretch">
+                  <!-- Photo / Avatar -->
+                  <div class="w-28 sm:w-32 shrink-0 relative overflow-hidden">
+                    {member.photo ? (
+                      <img
+                        src={member.photo}
+                        alt={member.name}
+                        class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        loading="lazy"
+                      />
+                    ) : (
+                      <div class={`absolute inset-0 bg-gradient-to-br ${grad} flex items-center justify-center`}>
+                        <span class="font-display text-3xl font-bold text-white/90">{getInitials(member.name)}</span>
+                      </div>
+                    )}
+                    {member.founding && (
+                      <span class="absolute top-2 left-2 bg-turmeric text-ink text-[8px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded-sm">
+                        Founder
+                      </span>
+                    )}
+                  </div>
+                  <!-- Info -->
+                  <div class="flex-1 p-4 sm:p-5 flex flex-col justify-center min-h-[140px]">
+                    <h3 class="font-display text-base font-semibold group-hover:text-vermillion transition-colors">{member.name}</h3>
+                    <p class="text-xs text-saffron font-medium uppercase tracking-wider mt-0.5">{member.role}</p>
+                    <p class="text-[13px] text-ink-muted mt-2 line-clamp-2 leading-relaxed">{member.bio}</p>
+                    {member.instruments && member.instruments.length > 0 && (
+                      <div class="flex flex-wrap gap-1 mt-2">
+                        {member.instruments.slice(0, 3).map((inst) => (
+                          <span class="text-[10px] px-2 py-0.5 rounded-full bg-ink/5 text-ink-muted">{inst}</span>
+                        ))}
+                      </div>
+                    )}
+                    <span class="text-[11px] text-vermillion mt-2 font-medium group-hover:underline transition-all uppercase tracking-wider">Read more &rarr;</span>
+                  </div>
+                </div>
+              </button>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <div class="dhaka-border" aria-hidden="true"></div>
+
+  <!-- Join CTA -->
+  <section class="py-16 bg-parchment-warm text-center">
+    <div class="max-w-xl mx-auto px-6 reveal">
+      <h2 class="font-display text-2xl font-bold mb-3">Want to join?</h2>
+      <p class="text-sm text-ink-muted mb-6">
+        Musicians of all skill levels are welcome. Reach out and become part of our musical family.
+      </p>
+      <a href="/contact/" class="inline-flex px-6 py-3 bg-vermillion text-white text-sm font-semibold uppercase tracking-wide rounded-sm hover:bg-vermillion-dark transition-colors">
+        Get in Touch
+      </a>
+    </div>
+  </section>
+
+  <!-- Bio Modal -->
+  <div id="bio-backdrop" class="fixed inset-0 z-[100] bg-ink/50 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-200" aria-hidden="true">
+    <div id="bio-modal" class="fixed inset-x-4 md:inset-x-auto md:left-1/2 md:-translate-x-1/2 top-1/2 -translate-y-1/2 md:max-w-lg md:w-full bg-parchment border border-ink-faint/20 rounded-sm p-6 md:p-8 max-h-[80vh] overflow-y-auto transform scale-95 opacity-0 transition-all duration-200 shadow-2xl" role="dialog" aria-modal="true">
+      <button id="bio-close" class="absolute top-3 right-3 w-8 h-8 rounded-full hover:bg-ink/5 flex items-center justify-center text-ink-muted hover:text-ink transition-colors cursor-pointer" aria-label="Close">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 1l12 12M13 1L1 13"/></svg>
+      </button>
+      {siteConfig.members.map((m, i) => {
+        const gradients2 = [
+          'from-vermillion/80 to-saffron/80',
+          'from-forest/80 to-indigo/80',
+          'from-indigo/80 to-vermillion/80',
+          'from-saffron/80 to-forest/80',
+          'from-vermillion-dark/80 to-turmeric/80',
+        ];
+        const grad2 = gradients2[(m.variant || i) % gradients2.length];
+        return (
+          <div class="bio-content hidden" data-idx={i}>
+            <div class="flex items-center gap-4 mb-5">
+              <div class="w-16 h-16 rounded-full overflow-hidden shrink-0 border-2 border-turmeric/30">
+                {m.photo ? (
+                  <img src={m.photo} alt={m.name} class="w-full h-full object-cover" />
+                ) : (
+                  <div class={`w-full h-full bg-gradient-to-br ${grad2} flex items-center justify-center`}>
+                    <span class="font-display text-xl font-bold text-white/90">{getInitials(m.name)}</span>
+                  </div>
+                )}
+              </div>
+              <div>
+                <h3 class="font-display text-xl font-bold">{m.name}</h3>
+                <p class="text-sm text-saffron font-medium">{m.role}</p>
+              </div>
+            </div>
+            <p class="text-sm text-ink-soft leading-relaxed mb-4">{m.bio}</p>
+            {m.instruments && m.instruments.length > 0 && (
+              <div class="flex flex-wrap gap-2">
+                {m.instruments.map((inst) => (
+                  <span class="text-xs px-3 py-1 rounded-full border border-turmeric/30 text-saffron">{inst}</span>
+                ))}
+              </div>
+            )}
+          </div>
+        );
+      })}
+    </div>
+  </div>
+
+  <script>
+    function initBioModal() {
+      const backdrop = document.getElementById('bio-backdrop');
+      const modal = document.getElementById('bio-modal');
+      function open(idx: number) {
+        modal?.querySelectorAll('.bio-content').forEach((el) => el.classList.add('hidden'));
+        modal?.querySelector(`[data-idx="${idx}"]`)?.classList.remove('hidden');
+        backdrop?.classList.remove('opacity-0', 'pointer-events-none');
+        modal?.classList.remove('scale-95', 'opacity-0');
+        document.body.style.overflow = 'hidden';
+      }
+      function close() {
+        backdrop?.classList.add('opacity-0', 'pointer-events-none');
+        modal?.classList.add('scale-95', 'opacity-0');
+        document.body.style.overflow = '';
+      }
+      document.querySelectorAll('.member-trigger').forEach((btn) => {
+        btn.addEventListener('click', () => { const idx = btn.getAttribute('data-idx'); if (idx !== null) open(+idx); });
+      });
+      document.getElementById('bio-close')?.addEventListener('click', close);
+      backdrop?.addEventListener('click', (e) => { if (e.target === backdrop) close(); });
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
+    }
+    initBioModal();
+    document.addEventListener('astro:after-swap', initBioModal);
+  </script>
+</BaseLayout>

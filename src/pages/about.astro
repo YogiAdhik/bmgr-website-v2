@@ -1,0 +1,133 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { Icon } from 'astro-icon/components';
+import { siteConfig } from '@/config/site.config';
+---
+
+<BaseLayout title="About — BMGR" description="Our story, mission, values, and the journey from Nepal to Rochester.">
+  <!-- Page hero -->
+  <section class="bg-parchment-warm py-16 md:py-24">
+    <div class="max-w-4xl mx-auto px-6">
+      <div class="flex items-center gap-3 mb-4" style="animation: fade-up 0.6s 0.1s both;">
+        <div class="h-px w-10 bg-vermillion"></div>
+        <span class="text-[11px] font-bold tracking-[0.2em] uppercase text-vermillion">About Us</span>
+      </div>
+      <h1 class="font-display text-4xl md:text-5xl font-bold mb-6" style="animation: fade-up 0.7s 0.2s both;">
+        Our Story
+      </h1>
+      <p class="text-lg text-ink-soft max-w-2xl leading-relaxed" style="animation: fade-up 0.7s 0.35s both;">
+        {siteConfig.about}
+      </p>
+    </div>
+  </section>
+
+  <div class="dhaka-border" aria-hidden="true"></div>
+
+  <!-- Timeline -->
+  <section class="py-20 md:py-28 bg-parchment">
+    <div class="max-w-3xl mx-auto px-6">
+      <div class="mb-12 reveal">
+        <span class="text-[11px] font-bold tracking-[0.2em] uppercase text-forest">Our Journey</span>
+        <h2 class="font-display text-3xl font-bold mt-2">From Nepal to Rochester</h2>
+      </div>
+
+      <div class="relative">
+        <!-- Timeline line -->
+        <div class="absolute left-[18px] top-0 bottom-0 w-px bg-gradient-to-b from-vermillion via-turmeric to-forest"></div>
+
+        <div class="space-y-10">
+          {siteConfig.timeline.map((item, i) => (
+            <div class={`reveal reveal-d${Math.min(i + 1, 4)} relative pl-12`}>
+              <!-- Dot -->
+              <div class="absolute left-0 top-1 w-[38px] h-[38px] rounded-full bg-parchment border-2 border-turmeric flex items-center justify-center">
+                <span class="w-2.5 h-2.5 rounded-full bg-turmeric"></span>
+              </div>
+              <!-- Card -->
+              <div class="bg-parchment-warm border border-ink-faint/10 rounded-sm p-5">
+                <span class="font-display text-xl font-bold text-vermillion">{item.year}</span>
+                <h3 class="font-display text-lg font-semibold mt-1">{item.title}</h3>
+                <p class="text-sm text-ink-muted mt-2 leading-relaxed">{item.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Values -->
+  <section class="py-20 md:py-28 bg-parchment-warm">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="mb-12 reveal">
+        <span class="text-[11px] font-bold tracking-[0.2em] uppercase text-indigo">What Guides Us</span>
+        <h2 class="font-display text-3xl font-bold mt-2">Our Values</h2>
+      </div>
+
+      <div class="grid sm:grid-cols-2 gap-5">
+        {siteConfig.values.map((v, i) => {
+          const accents = ['vermillion', 'indigo', 'forest', 'turmeric'];
+          const a = accents[i % accents.length];
+          return (
+            <div class={`reveal reveal-d${i + 1} p-6 bg-parchment border border-ink-faint/10 rounded-sm border-l-[3px] border-l-${a}`}>
+              <h3 class="font-display text-lg font-semibold mb-2">{v.title}</h3>
+              <p class="text-sm text-ink-muted leading-relaxed">{v.description}</p>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <!-- Leadership -->
+  <section class="py-20 md:py-28 bg-parchment">
+    <div class="max-w-4xl mx-auto px-6">
+      <div class="mb-12 reveal">
+        <span class="text-[11px] font-bold tracking-[0.2em] uppercase text-saffron">Leadership</span>
+        <h2 class="font-display text-3xl font-bold mt-2">Who Leads BMGR</h2>
+      </div>
+
+      <div class="grid sm:grid-cols-3 gap-5">
+        {siteConfig.leadership.map((l, i) => (
+          <div class={`reveal reveal-d${i + 1} text-center p-6 bg-parchment-warm border border-ink-faint/10 rounded-sm`}>
+            <div class="w-12 h-12 rounded-full bg-vermillion/10 flex items-center justify-center mx-auto mb-3">
+              <Icon name="lucide:user" class="w-6 h-6 text-vermillion" />
+            </div>
+            <h3 class="font-display text-base font-semibold">{l.name}</h3>
+            <p class="text-xs text-ink-muted uppercase tracking-wider mt-1">{l.role}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <div class="dhaka-border" aria-hidden="true"></div>
+
+  <!-- Looking Ahead -->
+  <section class="py-20 md:py-28 bg-parchment-warm">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+      <div class="reveal">
+        <h2 class="font-display text-3xl font-bold mb-4">Looking Ahead</h2>
+        <p class="text-ink-muted max-w-xl mx-auto mb-10">
+          We're working toward official 501(c)(3) nonprofit status, a grand summer concert in 2026,
+          youth music programs, and continued growth of our musical community.
+        </p>
+      </div>
+      <div class="grid sm:grid-cols-2 gap-5 max-w-2xl mx-auto">
+        {[
+          { label: 'Official Registration', desc: 'EIN & 501(c)(3) nonprofit status', icon: 'lucide:file-check' },
+          { label: 'Summer Concert 2026', desc: 'Large-scale community event', icon: 'lucide:music' },
+          { label: 'Youth Orchestra', desc: "Kids' music programs", icon: 'lucide:baby' },
+          { label: 'Community Growth', desc: 'Expanding membership & skills', icon: 'lucide:trending-up' },
+        ].map((g, i) => (
+          <div class={`reveal reveal-d${i + 1} flex items-start gap-3 text-left p-4 bg-parchment border border-ink-faint/10 rounded-sm`}>
+            <Icon name={g.icon} class="w-5 h-5 text-forest mt-0.5 shrink-0" />
+            <div>
+              <h3 class="font-semibold text-sm">{g.label}</h3>
+              <p class="text-xs text-ink-muted">{g.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

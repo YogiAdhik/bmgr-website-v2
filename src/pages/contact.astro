@@ -1,0 +1,119 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { Icon } from 'astro-icon/components';
+import { siteConfig } from '@/config/site.config';
+---
+
+<BaseLayout title="Contact — BMGR" description="Reach out to BMGR to join, volunteer, sponsor, or learn more.">
+  <section class="bg-parchment-warm py-16 md:py-24">
+    <div class="max-w-4xl mx-auto px-6">
+      <div class="flex items-center gap-3 mb-4" style="animation: fade-up 0.6s 0.1s both;">
+        <div class="h-px w-10 bg-forest"></div>
+        <span class="text-[11px] font-bold tracking-[0.2em] uppercase text-forest">Contact</span>
+      </div>
+      <h1 class="font-display text-4xl md:text-5xl font-bold mb-4" style="animation: fade-up 0.7s 0.2s both;">
+        Get in Touch
+      </h1>
+      <p class="text-lg text-ink-soft max-w-lg" style="animation: fade-up 0.7s 0.3s both;">
+        We'd love to hear from you — whether you want to join, collaborate, or support BMGR.
+      </p>
+    </div>
+  </section>
+
+  <div class="dhaka-border" aria-hidden="true"></div>
+
+  <section class="py-20 md:py-28 bg-parchment">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="grid lg:grid-cols-5 gap-10">
+        <!-- Form -->
+        <div class="lg:col-span-3 reveal">
+          <div class="bg-parchment-warm border border-ink-faint/10 rounded-sm p-6 md:p-8">
+            <h2 class="font-display text-xl font-bold mb-6">Send a Message</h2>
+            <form id="contact-form" action="https://formspree.io/f/placeholder" method="POST" class="space-y-5">
+              <div class="grid sm:grid-cols-2 gap-4">
+                <div>
+                  <label for="fn" class="block text-xs font-semibold text-ink-muted uppercase tracking-wider mb-1">First Name</label>
+                  <input type="text" id="fn" name="firstName" required
+                    class="w-full px-3 py-2.5 bg-parchment border border-ink-faint/15 rounded-sm text-ink placeholder:text-ink-faint text-sm focus:border-indigo focus:ring-1 focus:ring-indigo transition" />
+                </div>
+                <div>
+                  <label for="ln" class="block text-xs font-semibold text-ink-muted uppercase tracking-wider mb-1">Last Name</label>
+                  <input type="text" id="ln" name="lastName" required
+                    class="w-full px-3 py-2.5 bg-parchment border border-ink-faint/15 rounded-sm text-ink placeholder:text-ink-faint text-sm focus:border-indigo focus:ring-1 focus:ring-indigo transition" />
+                </div>
+              </div>
+              <div>
+                <label for="em" class="block text-xs font-semibold text-ink-muted uppercase tracking-wider mb-1">Email</label>
+                <input type="email" id="em" name="email" required
+                  class="w-full px-3 py-2.5 bg-parchment border border-ink-faint/15 rounded-sm text-ink placeholder:text-ink-faint text-sm focus:border-indigo focus:ring-1 focus:ring-indigo transition" />
+              </div>
+              <div>
+                <label for="type" class="block text-xs font-semibold text-ink-muted uppercase tracking-wider mb-1">Inquiry Type</label>
+                <select id="type" name="inquiryType"
+                  class="w-full px-3 py-2.5 bg-parchment border border-ink-faint/15 rounded-sm text-ink text-sm focus:border-indigo focus:ring-1 focus:ring-indigo transition">
+                  <option value="membership">Join BMGR</option>
+                  <option value="volunteer">Volunteer</option>
+                  <option value="sponsorship">Sponsorship / Donation</option>
+                  <option value="general">General Inquiry</option>
+                </select>
+              </div>
+              <div>
+                <label for="msg" class="block text-xs font-semibold text-ink-muted uppercase tracking-wider mb-1">Message</label>
+                <textarea id="msg" name="message" rows="4" required
+                  class="w-full px-3 py-2.5 bg-parchment border border-ink-faint/15 rounded-sm text-ink placeholder:text-ink-faint text-sm focus:border-indigo focus:ring-1 focus:ring-indigo transition resize-none"></textarea>
+              </div>
+              <button type="submit"
+                class="px-6 py-3 bg-vermillion text-white text-sm font-semibold uppercase tracking-wide rounded-sm hover:bg-vermillion-dark transition-colors cursor-pointer">
+                Send Message
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <!-- Info -->
+        <div class="lg:col-span-2 space-y-5">
+          <div class="reveal reveal-d1 p-5 bg-parchment-warm border border-ink-faint/10 rounded-sm">
+            <div class="flex items-center gap-3 mb-2">
+              <Icon name="lucide:mail" class="w-4 h-4 text-vermillion" />
+              <h3 class="text-sm font-semibold">Email</h3>
+            </div>
+            <a href={`mailto:${siteConfig.contact.email}`} class="text-sm text-indigo hover:underline">{siteConfig.contact.email}</a>
+          </div>
+          <div class="reveal reveal-d2 p-5 bg-parchment-warm border border-ink-faint/10 rounded-sm">
+            <div class="flex items-center gap-3 mb-2">
+              <Icon name="lucide:map-pin" class="w-4 h-4 text-forest" />
+              <h3 class="text-sm font-semibold">Location</h3>
+            </div>
+            <p class="text-sm text-ink-muted">{siteConfig.contact.address.full}</p>
+          </div>
+          <div class="reveal reveal-d3 p-5 bg-parchment-warm border border-ink-faint/10 rounded-sm">
+            <div class="flex items-center gap-3 mb-2">
+              <Icon name="lucide:users" class="w-4 h-4 text-saffron" />
+              <h3 class="text-sm font-semibold">Leadership</h3>
+            </div>
+            {siteConfig.leadership.map((l) => (
+              <p class="text-sm text-ink-muted"><span class="text-ink">{l.name}</span> — {l.role}</p>
+            ))}
+          </div>
+          <div class="reveal reveal-d4 p-5 bg-parchment-warm border border-ink-faint/10 rounded-sm">
+            <h3 class="text-sm font-semibold mb-3">Membership</h3>
+            <p class="text-sm text-ink-muted">All skill levels welcome. New members start with an observer period. We value commitment and community involvement.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  function initForm() {
+    const form = document.getElementById('contact-form') as HTMLFormElement | null;
+    form?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const btn = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+      if (btn) { const o = btn.textContent; btn.textContent = 'Sent!'; btn.disabled = true; setTimeout(() => { btn.textContent = o; btn.disabled = false; form.reset(); }, 3000); }
+    });
+  }
+  initForm();
+  document.addEventListener('astro:after-swap', initForm);
+</script>

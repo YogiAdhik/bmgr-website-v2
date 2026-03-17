@@ -1,0 +1,115 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { siteConfig } from '@/config/site.config';
+
+// Placeholder gallery items — replace with real photos over time
+const galleryItems = [
+  { src: '/images/bmgr-group.jpg', alt: 'BMGR Group Performance', caption: 'BMGR members at a community gathering' },
+  { src: '/images/members/lalit-gurung.jpg', alt: 'Lalit Gurung performing', caption: 'Lalit Gurung on tabla' },
+  { src: '/images/members/usha-gurung.jpg', alt: 'Usha Gurung singing', caption: 'Usha Gurung performing' },
+  { src: '/images/members/harkapal.jpg', alt: 'Harkapal Sanyak', caption: 'Harkapal Sanyak at an event' },
+  { src: '/images/members/ruban-rai.jpg', alt: 'Ruban Rai', caption: 'Ruban Rai' },
+  { src: '/images/members/dawa-tamang.jpg', alt: 'Dawa Tamang', caption: 'Dawa Tamang' },
+];
+---
+
+<BaseLayout title="Gallery — BMGR" description="Photos from BMGR events, performances, and community gatherings.">
+  <section class="bg-parchment-warm py-16 md:py-24">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="flex items-center gap-3 mb-4" style="animation: fade-up 0.6s 0.1s both;">
+        <div class="h-px w-10 bg-saffron"></div>
+        <span class="text-[11px] font-bold tracking-[0.2em] uppercase text-saffron">Photos</span>
+      </div>
+      <h1 class="font-display text-4xl md:text-5xl font-bold mb-4" style="animation: fade-up 0.7s 0.2s both;">
+        Gallery
+      </h1>
+      <p class="text-lg text-ink-soft max-w-lg" style="animation: fade-up 0.7s 0.3s both;">
+        Moments from our performances, rehearsals, and community celebrations.
+      </p>
+    </div>
+  </section>
+
+  <div class="dhaka-border" aria-hidden="true"></div>
+
+  <section class="py-16 md:py-24 bg-parchment">
+    <div class="max-w-6xl mx-auto px-6">
+      <!-- Masonry-style grid -->
+      <div class="columns-1 sm:columns-2 lg:columns-3 gap-4 space-y-4">
+        {galleryItems.map((item, i) => (
+          <div class={`reveal reveal-d${(i % 4) + 1} break-inside-avoid`}>
+            <button
+              class="gallery-item group relative overflow-hidden rounded-sm cursor-pointer w-full bg-transparent border-0 p-0"
+              data-src={item.src}
+              data-caption={item.caption}
+            >
+              <img
+                src={item.src}
+                alt={item.alt}
+                class="w-full rounded-sm group-hover:scale-105 transition-transform duration-500"
+                loading="lazy"
+              />
+              <div class="absolute inset-0 bg-ink/0 group-hover:bg-ink/30 transition-colors duration-300 rounded-sm flex items-end">
+                <p class="text-parchment text-sm p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 translate-y-2 group-hover:translate-y-0">
+                  {item.caption}
+                </p>
+              </div>
+            </button>
+          </div>
+        ))}
+      </div>
+
+      <!-- Add more note -->
+      <div class="mt-16 text-center reveal">
+        <div class="inline-flex items-center gap-3 px-6 py-4 bg-parchment-warm border border-ink-faint/10 rounded-sm">
+          <span class="text-2xl">📸</span>
+          <div class="text-left">
+            <p class="text-sm font-semibold">Have photos to share?</p>
+            <p class="text-xs text-ink-muted">Send them to <a href={`mailto:${siteConfig.contact.email}`} class="text-indigo hover:underline">{siteConfig.contact.email}</a> and we'll add them here.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lightbox -->
+  <div id="lightbox" class="fixed inset-0 z-[100] bg-ink/90 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-200 flex items-center justify-center" aria-hidden="true">
+    <button id="lb-close" class="absolute top-4 right-4 w-10 h-10 rounded-full bg-parchment/10 text-parchment hover:bg-parchment/20 flex items-center justify-center cursor-pointer transition-colors z-10" aria-label="Close">
+      <svg width="16" height="16" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 1l12 12M13 1L1 13"/></svg>
+    </button>
+    <div class="max-w-4xl w-full px-6">
+      <img id="lb-img" src="" alt="" class="w-full max-h-[75vh] object-contain rounded-sm" />
+      <p id="lb-caption" class="text-parchment/70 text-sm text-center mt-3"></p>
+    </div>
+  </div>
+
+  <script>
+    function initGallery() {
+      const lightbox = document.getElementById('lightbox');
+      const lbImg = document.getElementById('lb-img') as HTMLImageElement;
+      const lbCaption = document.getElementById('lb-caption');
+
+      document.querySelectorAll('.gallery-item').forEach((item) => {
+        item.addEventListener('click', () => {
+          const src = item.getAttribute('data-src');
+          const caption = item.getAttribute('data-caption');
+          if (lbImg && src) lbImg.src = src;
+          if (lbImg && caption) lbImg.alt = caption;
+          if (lbCaption && caption) lbCaption.textContent = caption;
+          lightbox?.classList.remove('opacity-0', 'pointer-events-none');
+          document.body.style.overflow = 'hidden';
+        });
+      });
+
+      function closeLb() {
+        lightbox?.classList.add('opacity-0', 'pointer-events-none');
+        document.body.style.overflow = '';
+      }
+
+      document.getElementById('lb-close')?.addEventListener('click', closeLb);
+      lightbox?.addEventListener('click', (e) => { if (e.target === lightbox) closeLb(); });
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLb(); });
+    }
+    initGallery();
+    document.addEventListener('astro:after-swap', initGallery);
+  </script>
+</BaseLayout>

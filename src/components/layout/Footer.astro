@@ -1,0 +1,84 @@
+---
+import { Icon } from 'astro-icon/components';
+import { siteConfig } from '@/config/site.config';
+---
+
+<!-- Dhaka border -->
+<div class="dhaka-border" aria-hidden="true"></div>
+
+<footer class="bg-ink text-parchment-warm">
+  <div class="max-w-6xl mx-auto px-6 py-16">
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-10 mb-12">
+      <!-- Brand column -->
+      <div class="md:col-span-5">
+        <div class="flex items-center gap-3 mb-4">
+          <img src={siteConfig.logo.src} alt="" class="w-10 h-10 rounded-full" width="40" height="40" />
+          <div>
+            <span class="font-display text-xl tracking-wide">{siteConfig.shortName}</span>
+            <span class="block text-[11px] text-ink-faint tracking-[0.15em] uppercase">Est. {siteConfig.founded}</span>
+          </div>
+        </div>
+        <p class="text-sm text-ink-faint leading-relaxed max-w-sm mb-5">
+          {siteConfig.tagline}
+        </p>
+        <p
+          class="text-base text-turmeric/70"
+          style="font-family: 'Tiro Devanagari Hindi', serif;"
+        >
+          {siteConfig.nepaliName}
+        </p>
+      </div>
+
+      <!-- Links -->
+      <div class="md:col-span-3">
+        <h3 class="text-[11px] font-bold tracking-[0.2em] uppercase text-turmeric mb-4">Navigate</h3>
+        <ul class="space-y-2">
+          {siteConfig.nav.map((item) => (
+            <li>
+              <a href={item.href} class="text-sm text-ink-faint hover:text-parchment transition-colors">{item.label}</a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div class="md:col-span-4">
+        <h3 class="text-[11px] font-bold tracking-[0.2em] uppercase text-turmeric mb-4">Reach Us</h3>
+        <div class="space-y-3 text-sm text-ink-faint">
+          <a href={`mailto:${siteConfig.contact.email}`} class="flex items-center gap-2 hover:text-parchment transition-colors">
+            <Icon name="lucide:mail" class="w-4 h-4 text-turmeric" />
+            {siteConfig.contact.email}
+          </a>
+          <div class="flex items-start gap-2">
+            <Icon name="lucide:map-pin" class="w-4 h-4 text-turmeric mt-0.5 shrink-0" />
+            <span>{siteConfig.contact.address.full}</span>
+          </div>
+          <a
+            href={siteConfig.social.facebook}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 hover:text-parchment transition-colors"
+          >
+            <Icon name="mdi:facebook" class="w-4 h-4 text-turmeric" />
+            Facebook
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Prayer flag micro-strip -->
+    <div class="prayer-flags mb-6 rounded-full overflow-hidden opacity-40" aria-hidden="true">
+      <span style="background: var(--color-flag-blue)"></span>
+      <span style="background: var(--color-flag-white)"></span>
+      <span style="background: var(--color-flag-red)"></span>
+      <span style="background: var(--color-flag-green)"></span>
+      <span style="background: var(--color-flag-yellow)"></span>
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-ink-faint">
+      <span>&copy; {new Date().getFullYear()} {siteConfig.name}</span>
+      <span>Developed with love by Yogesh Adhikari, in Rochester, NY</span>
+    </div>
+  </div>
+</footer>
