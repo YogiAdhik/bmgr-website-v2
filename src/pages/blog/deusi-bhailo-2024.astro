@@ -1,10 +1,10 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 
-const title = 'Why We Teach Harmonium Every Week';
-const date = '2026-02-20';
+const title = 'Deusi-Bhailo 2024: Going Door to Door with Music';
+const date = '2026-02-25';
 const author = 'Yogesh Adhikari';
-const slug = 'harmonium-classes';
+const slug = 'deusi-bhailo-2024';
 ---
 
 <BaseLayout title={`${title} — BMGR Blog`}>
@@ -14,7 +14,7 @@ const slug = 'harmonium-classes';
 
       <header class="mb-10">
         <div class="flex items-center gap-3 text-xs text-ink-muted mb-3">
-          <time datetime={date}>February 20, 2026</time>
+          <time datetime={date}>February 25, 2026</time>
           <span class="w-1 h-1 rounded-full bg-ink-faint"></span>
           <span>{author}</span>
         </div>
@@ -22,32 +22,34 @@ const slug = 'harmonium-classes';
       </header>
 
       <div class="rounded-sm overflow-hidden mb-10">
-        <img src="/images/BirkhaGurungOnMixer.jpg" alt="Birkha Gurung at sound setup" class="w-full" loading="lazy" />
-        <p class="text-xs text-ink-faint mt-2 italic">Birkha Gurung managing sound — the same hands that lead our harmonium sessions</p>
+        <img src="/images/Fundraising1.jpg" alt="BMGR Deusi-Bhailo team" class="w-full" loading="lazy" />
+        <p class="text-xs text-ink-faint mt-2 italic">BMGR members during Deusi-Bhailo visits, Tihar 2024</p>
       </div>
 
       <div class="dhaka-border mb-10" aria-hidden="true"></div>
 
       <div class="space-y-5 text-ink-soft leading-relaxed">
         <p>
-          If you've ever been to a Bhutanese Nepali gathering — a bhajan, a wedding, a Tihar celebration — you've heard the harmonium. It's the instrument that anchors everything. The vocalist follows it, the tabla responds to it, the room settles into its drone. Without the harmonium, the music feels incomplete.
+          Every Tihar, Bhutanese Nepali communities across the US carry on the tradition of <strong>Deusi-Bhailo</strong> — groups of singers going house to house, performing traditional songs, blessing the household, and receiving gifts or donations in return. It's one of the most joyful traditions we have, and for BMGR, it's also one of the most important.
         </p>
         <p>
-          That's why one of the first things BMGR committed to was <strong>weekly harmonium classes</strong> at the BCGR Community Hall. Every week, 4-5 regular participants sit down with Birkha dai — a man with over 35 years of harmonium experience and a diploma in Indian Classical Vocal — and learn.
+          In 2024, our Deusi-Bhailo team visited <strong>nine homes</strong> across the Rochester area. We loaded up the instruments — harmonium, madal, shakers — squeezed into cars, and spent the evening driving from house to house, singing at each doorstep until we were invited inside.
         </p>
         <p>
-          The classes aren't formal or intimidating. There's no syllabus, no exams. People come, sit, and play. Beginners learn their first scales. Intermediate players work on songs. The point isn't to create concert-level performers — it's to keep the tradition alive.
+          The numbers: we raised <strong>$3,877</strong> in total. After expenses on instruments and speakers ($926), we netted <strong>$2,951</strong> for the group. Every dollar goes directly toward supporting BMGR's programs — our weekly harmonium classes, upcoming concerts, and operational costs.
         </p>
         <p>
-          Here's what worries me sometimes: our children are growing up in a world where Nepali music isn't playing in the background the way it was for us. They hear it at events, maybe during Dashain, but it's not part of their daily life. If we don't teach them the harmonium, the tabla, the songs — who will? YouTube tutorials are great, but they can't replace sitting next to someone who learned the same way, decades ago, in a different country.
+          But honestly, the money is only part of it. What makes Deusi-Bhailo special is the way it connects people. At every home, families welcomed us in, offered tea and snacks, and sat with us while we played. Kids watched from the stairs. Grandparents clapped along. For those few minutes at each house, it felt like we were back in Jhapa or Chirang — like the distance between Bhutan and Rochester had collapsed.
         </p>
         <p>
-          That's why we encourage members to send their kids. We're also exploring the idea of a kids' orchestra and a children's choral group. It's ambitious, but if even a few young people pick up an instrument because of BMGR, that's worth everything.
+          Tek dai, our treasurer, kept careful records of every donation. Birkha dai coordinated the route and logistics. Lalit dai and Ruban drove and carried equipment. Everyone contributed. That's how BMGR works — there's no hierarchy when it comes to putting in effort.
         </p>
         <p>
-          The classes are free for BMGR members and open to anyone in the community who wants to learn. If you're interested, <a href="/contact/" class="text-indigo hover:underline">get in touch</a>. You don't need to know anything — just show up.
+          We plan to continue Deusi-Bhailo every year. If you'd like BMGR to visit your home during the next Tihar season, <a href="/contact/" class="text-indigo hover:underline">reach out to us</a>. We'd love to bring the music to your doorstep.
         </p>
-        <p class="text-sm text-ink-muted">— Yogesh Adhikari</p>
+        <p class="text-sm text-ink-muted">
+          — Yogesh Adhikari
+        </p>
       </div>
 
       <div class="dhaka-border my-10" aria-hidden="true"></div>
@@ -71,7 +73,10 @@ const slug = 'harmonium-classes';
 
 <script define:vars={{ slug }}>
   function initComments() {
-    const KEY = 'bmgr-comments-' + slug; const form = document.getElementById('comment-form'); const list = document.getElementById('comments-list'); const none = document.getElementById('no-comments');
+    const KEY = 'bmgr-comments-' + slug;
+    const form = document.getElementById('comment-form');
+    const list = document.getElementById('comments-list');
+    const none = document.getElementById('no-comments');
     function load() { try { return JSON.parse(localStorage.getItem(KEY)||'[]'); } catch { return []; } }
     function render() { const c = load(); if (!list) return; if (!c.length) { list.innerHTML=''; none?.classList.remove('hidden'); return; } none?.classList.add('hidden'); list.innerHTML = c.map((x)=>`<div class="p-4 bg-parchment-warm border border-ink-faint/10 rounded-sm"><div class="flex items-center gap-2 mb-2"><div class="w-7 h-7 rounded-full bg-vermillion/15 flex items-center justify-center text-xs font-bold text-vermillion">${x.name[0].toUpperCase()}</div><span class="text-sm font-semibold">${x.name}</span><span class="text-[10px] text-ink-faint ml-auto">${x.date}</span></div><p class="text-sm text-ink-soft">${x.text}</p></div>`).join(''); }
     form?.addEventListener('submit',(e)=>{e.preventDefault();const n=document.getElementById('c-name').value.trim();const t=document.getElementById('c-text').value.trim();const c=load();c.push({name:n,text:t,date:new Date().toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})});localStorage.setItem(KEY,JSON.stringify(c));form.reset();render();});

@@ -1,20 +1,16 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 
-const title = 'Welcome to BMGR';
+const title = 'Welcome to Our New Home on the Web';
 const date = '2026-03-15';
-const author = 'BMGR Team';
+const author = 'Yogesh Adhikari';
 ---
 
 <BaseLayout title={`${title} — BMGR Blog`}>
   <article class="py-16 md:py-24 bg-parchment">
     <div class="max-w-2xl mx-auto px-6">
-      <!-- Back link -->
-      <a href="/blog/" class="inline-flex items-center gap-1 text-xs text-vermillion font-semibold uppercase tracking-wider hover:underline mb-8">
-        &larr; All posts
-      </a>
+      <a href="/blog/" class="inline-flex items-center gap-1 text-xs text-vermillion font-semibold uppercase tracking-wider hover:underline mb-8">&larr; All posts</a>
 
-      <!-- Header -->
       <header class="mb-10">
         <div class="flex items-center gap-3 text-xs text-ink-muted mb-3">
           <time datetime={date}>March 15, 2026</time>
@@ -26,25 +22,37 @@ const author = 'BMGR Team';
 
       <div class="dhaka-border mb-10" aria-hidden="true"></div>
 
-      <!-- Content -->
-      <div class="prose-custom space-y-5 text-ink-soft leading-relaxed">
+      <div class="space-y-5 text-ink-soft leading-relaxed">
         <p>
-          We are excited to launch the official website of the <strong>Bhutanese Musical Group of Rochester (BMGR)</strong>. This website is a milestone in our journey to preserve and promote Bhutanese Nepali music, arts, and culture right here in Rochester, New York.
+          For a while now, BMGR has existed in group chats, in community halls, and in the memories of people who've attended our events. But we never had a place online that felt like <em>ours</em> — somewhere people could visit and understand who we are, what we do, and why it matters.
         </p>
         <p>
-          BMGR was founded in 2019 by a group of passionate musicians who carried their love for music from Bhutan and Nepal to the United States. Our roots go back even further — to the Flamingo Band, co-founded in 1993 in Timai, Jhapa, Nepal, by our President Birkha Gurung and percussionist Lalit Gurung.
+          This website changes that.
         </p>
         <p>
-          Today, BMGR is home to over 13 members — vocalists, percussionists, composers, songwriters, and community leaders. Together, we organize harmonium classes, Bhajan Sandhya (devotional evenings), cultural performances at Dashain, Tihar, and other celebrations, and community concerts that bring generations together.
+          When I started working on this project, I wanted it to reflect what makes us different. We're not just another music group. We are Bhutanese Nepalis — people who carry a specific history, a specific sound, and a specific way of coming together through music. Our songs are rooted in the hills of Bhutan and the plains of Jhapa. Our instruments — the harmonium, the madal, the tabla — are the same ones our parents played. That identity is what this website is built around.
         </p>
         <p>
-          Through this website, you can learn about our members, keep up with upcoming events, explore our gallery, and reach out to get involved. We welcome musicians and music lovers of all skill levels.
+          Here's what you'll find:
+        </p>
+        <ul class="list-disc list-inside space-y-1 pl-2">
+          <li><strong>Members</strong> — profiles of all 13 active members, with bios and the instruments they play</li>
+          <li><strong>Events</strong> — upcoming programs, our song repertoire, and the equipment we use</li>
+          <li><strong>Gallery</strong> — photos from our concerts, rehearsals, Deusi-Bhailo visits, and community events</li>
+          <li><strong>Blog</strong> — stories, recaps, and updates written by our members</li>
+          <li><strong>Contact</strong> — a simple way to reach us if you want to join, volunteer, or support</li>
+        </ul>
+        <p>
+          Everything on this site — every member bio, every event description, every photo caption — comes from real conversations with our members. Nothing here is filler. It's all us.
         </p>
         <p>
-          Thank you for visiting. We look forward to sharing our music and culture with you.
+          We're also working toward some big milestones: official nonprofit registration, a grand summer concert in June 2026, and youth music programs to get our kids involved. This website will be the place to follow all of that.
         </p>
-        <p class="text-sm italic text-ink-muted">
-          — The BMGR Team
+        <p>
+          If you've been to one of our events, you already know what BMGR feels like. If you haven't — I hope this site gives you a reason to come find out.
+        </p>
+        <p class="text-sm text-ink-muted">
+          — Yogesh Adhikari<br />Operations & Technology, BMGR
         </p>
       </div>
 
@@ -55,43 +63,31 @@ const author = 'BMGR Team';
         <h3 class="font-display text-sm font-semibold mb-1">Get updates from BMGR</h3>
         <p class="text-xs text-ink-muted mb-3">Event reminders and news delivered to your inbox.</p>
         <form id="post-newsletter" class="flex gap-2">
-          <input type="email" required placeholder="your@email.com"
-            class="flex-1 px-3 py-2 bg-parchment border border-ink-faint/15 rounded-sm text-sm focus:border-indigo focus:ring-1 focus:ring-indigo transition" />
-          <button type="submit" class="px-4 py-2 bg-forest text-white text-xs font-bold uppercase tracking-wider rounded-sm hover:bg-forest/90 transition cursor-pointer">
-            Subscribe
-          </button>
+          <input type="email" required placeholder="your@email.com" class="flex-1 px-3 py-2 bg-parchment border border-ink-faint/15 rounded-sm text-sm focus:border-indigo focus:ring-1 focus:ring-indigo transition" />
+          <button type="submit" class="px-4 py-2 bg-forest text-white text-xs font-bold uppercase tracking-wider rounded-sm hover:bg-forest/90 transition cursor-pointer">Subscribe</button>
         </form>
       </div>
 
-      <!-- Comments Section -->
-      <section id="comments-section">
+      <!-- Comments -->
+      <section>
         <h3 class="font-display text-xl font-bold mb-6">Comments</h3>
-
-        <!-- Comment form -->
         <form id="comment-form" class="mb-8 bg-parchment-warm border border-ink-faint/10 rounded-sm p-5">
           <div class="grid sm:grid-cols-2 gap-3 mb-3">
             <div>
               <label for="c-name" class="block text-xs font-semibold text-ink-muted uppercase tracking-wider mb-1">Name</label>
-              <input type="text" id="c-name" required
-                class="w-full px-3 py-2 bg-parchment border border-ink-faint/15 rounded-sm text-sm focus:border-indigo focus:ring-1 focus:ring-indigo transition" />
+              <input type="text" id="c-name" required class="w-full px-3 py-2 bg-parchment border border-ink-faint/15 rounded-sm text-sm focus:border-indigo focus:ring-1 focus:ring-indigo transition" />
             </div>
             <div>
               <label for="c-email" class="block text-xs font-semibold text-ink-muted uppercase tracking-wider mb-1">Email (not published)</label>
-              <input type="email" id="c-email" required
-                class="w-full px-3 py-2 bg-parchment border border-ink-faint/15 rounded-sm text-sm focus:border-indigo focus:ring-1 focus:ring-indigo transition" />
+              <input type="email" id="c-email" required class="w-full px-3 py-2 bg-parchment border border-ink-faint/15 rounded-sm text-sm focus:border-indigo focus:ring-1 focus:ring-indigo transition" />
             </div>
           </div>
           <div class="mb-3">
             <label for="c-text" class="block text-xs font-semibold text-ink-muted uppercase tracking-wider mb-1">Comment</label>
-            <textarea id="c-text" rows="3" required
-              class="w-full px-3 py-2 bg-parchment border border-ink-faint/15 rounded-sm text-sm focus:border-indigo focus:ring-1 focus:ring-indigo transition resize-none"></textarea>
+            <textarea id="c-text" rows="3" required class="w-full px-3 py-2 bg-parchment border border-ink-faint/15 rounded-sm text-sm focus:border-indigo focus:ring-1 focus:ring-indigo transition resize-none"></textarea>
           </div>
-          <button type="submit" class="px-5 py-2 bg-vermillion text-white text-xs font-bold uppercase tracking-wider rounded-sm hover:bg-vermillion-dark transition cursor-pointer">
-            Post Comment
-          </button>
+          <button type="submit" class="px-5 py-2 bg-vermillion text-white text-xs font-bold uppercase tracking-wider rounded-sm hover:bg-vermillion-dark transition cursor-pointer">Post Comment</button>
         </form>
-
-        <!-- Comments list (client-side, persisted in localStorage) -->
         <div id="comments-list" class="space-y-4"></div>
         <p id="no-comments" class="text-sm text-ink-muted italic">No comments yet. Be the first to share your thoughts!</p>
       </section>
@@ -100,64 +96,17 @@ const author = 'BMGR Team';
 </BaseLayout>
 
 <script>
-  function initComments() {
-    const STORAGE_KEY = 'bmgr-comments-welcome-to-bmgr';
+  function initPage() {
+    const KEY = 'bmgr-comments-welcome-to-bmgr';
     const form = document.getElementById('comment-form') as HTMLFormElement;
     const list = document.getElementById('comments-list');
-    const noComments = document.getElementById('no-comments');
-
-    function loadComments(): Array<{ name: string; text: string; date: string }> {
-      try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'); }
-      catch { return []; }
-    }
-
-    function renderComments() {
-      const comments = loadComments();
-      if (!list) return;
-      if (comments.length === 0) {
-        list.innerHTML = '';
-        noComments?.classList.remove('hidden');
-        return;
-      }
-      noComments?.classList.add('hidden');
-      list.innerHTML = comments.map((c) => `
-        <div class="p-4 bg-parchment-warm border border-ink-faint/10 rounded-sm">
-          <div class="flex items-center gap-2 mb-2">
-            <div class="w-7 h-7 rounded-full bg-vermillion/15 flex items-center justify-center text-xs font-bold text-vermillion">${c.name.charAt(0).toUpperCase()}</div>
-            <span class="text-sm font-semibold">${c.name}</span>
-            <span class="text-[10px] text-ink-faint ml-auto">${c.date}</span>
-          </div>
-          <p class="text-sm text-ink-soft">${c.text}</p>
-        </div>
-      `).join('');
-    }
-
-    form?.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const nameEl = document.getElementById('c-name') as HTMLInputElement;
-      const textEl = document.getElementById('c-text') as HTMLTextAreaElement;
-      const comments = loadComments();
-      comments.push({
-        name: nameEl.value.trim(),
-        text: textEl.value.trim(),
-        date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
-      });
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(comments));
-      form.reset();
-      renderComments();
-    });
-
-    renderComments();
-
-    // Newsletter
-    const nlForm = document.getElementById('post-newsletter') as HTMLFormElement | null;
-    nlForm?.addEventListener('submit', (ev) => {
-      ev.preventDefault();
-      const btn = nlForm.querySelector('button') as HTMLButtonElement;
-      const input = nlForm.querySelector('input') as HTMLInputElement;
-      if (btn) { const o = btn.textContent; btn.textContent = 'Subscribed!'; btn.disabled = true; input.value = ''; setTimeout(() => { btn.textContent = o; btn.disabled = false; }, 3000); }
-    });
+    const none = document.getElementById('no-comments');
+    function load() { try { return JSON.parse(localStorage.getItem(KEY)||'[]'); } catch { return []; } }
+    function render() { const c = load(); if (!list) return; if (!c.length) { list.innerHTML=''; none?.classList.remove('hidden'); return; } none?.classList.add('hidden'); list.innerHTML = c.map((x:any)=>`<div class="p-4 bg-parchment-warm border border-ink-faint/10 rounded-sm"><div class="flex items-center gap-2 mb-2"><div class="w-7 h-7 rounded-full bg-vermillion/15 flex items-center justify-center text-xs font-bold text-vermillion">${x.name[0].toUpperCase()}</div><span class="text-sm font-semibold">${x.name}</span><span class="text-[10px] text-ink-faint ml-auto">${x.date}</span></div><p class="text-sm text-ink-soft">${x.text}</p></div>`).join(''); }
+    form?.addEventListener('submit',(e)=>{e.preventDefault();const n=(document.getElementById('c-name')as HTMLInputElement).value.trim();const t=(document.getElementById('c-text')as HTMLTextAreaElement).value.trim();const c=load();c.push({name:n,text:t,date:new Date().toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})});localStorage.setItem(KEY,JSON.stringify(c));form.reset();render();});
+    render();
+    const nlForm = document.getElementById('post-newsletter') as HTMLFormElement|null;
+    nlForm?.addEventListener('submit',(e)=>{e.preventDefault();const btn=nlForm.querySelector('button')as HTMLButtonElement;const inp=nlForm.querySelector('input')as HTMLInputElement;if(btn){const o=btn.textContent;btn.textContent='Subscribed!';btn.disabled=true;inp.value='';setTimeout(()=>{btn.textContent=o;btn.disabled=false;},3000);}});
   }
-  initComments();
-  document.addEventListener('astro:after-swap', initComments);
+  initPage(); document.addEventListener('astro:after-swap', initPage);
 </script>
